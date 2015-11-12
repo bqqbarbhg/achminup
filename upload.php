@@ -26,7 +26,7 @@ fclose($out);
 
 chmod($path, 0666);
 
-$base_url = "http://".$_SERVER["HTTP_HOST"]."/achminup/"
+$base_url = "http://".$_SERVER["HTTP_HOST"]."/achminup/";
 
 echo $base_url.$path;
 
