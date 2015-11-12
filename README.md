@@ -1,4 +1,4 @@
-Basic Video Uploader
+Ach so! minimal uploader
 ====================
 
 Upload video and thumbnail data for the server (Apache, Nginx etc. ) to serve as static content.
