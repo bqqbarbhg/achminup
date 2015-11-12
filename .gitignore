@@ -1,0 +1,5 @@
+thumbnails/*
+videos/*
+
+!thumbnails/.gitkeep
+!videos/.gitkeep
