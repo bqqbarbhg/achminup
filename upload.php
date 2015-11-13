@@ -1,5 +1,7 @@
 <?php
 
+require 'secrets.php';
+
 $id = $_GET["id"];
 $type = $_GET["type"];
 
@@ -25,8 +27,6 @@ fclose($in);
 fclose($out);
 
 chmod($path, 0666);
-
-$base_url = $_ENV["LAYERS_API_URI"]."achminup/";
 
 echo $base_url.$path;
 
