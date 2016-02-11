@@ -38,7 +38,7 @@ cmd += ['-c:a', 'copy']
 cmd += ['-c:v', 'h264']
 
 # Baseline profile for compatability
-cmd += ['-profile:v', 'baseline']
+# cmd += ['-profile:v', 'baseline']
 
 # Better quality
 cmd += ['-qscale', '1']
