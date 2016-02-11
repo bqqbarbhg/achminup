@@ -11,22 +11,31 @@ if (!preg_match($uuid_r, $id)) {
 }
 
 if ($type == "video") {
-        $path = "videos/$id.mp4";
+
+        $dl_path = "temp/video_downloads/$id.mp4";
+        $out_path = "temp/videos_to_transcode/$id.mp4";
+        $url_path = "videos/$id.mp4";
+
 } else if ($type == "thumbnail") {
-        $path = "thumbnails/$id.jpg";
+
+        $dl_path = "temp/thumbnail_downloads/$id.mp4";
+        $out_path = "thumbnails/$id.mp4";
+        $url_path = "thumbnails/$id.mp4";
+
 } else {
         die("Unknown type");
 }
 
 $in = fopen("php://input", "r");
-$out = fopen($path, "w");
+$out = fopen($dl_path, "w");
 
 stream_copy_to_stream($in, $out);
 
 fclose($in);
 fclose($out);
 
-chmod($path, 0666);
+chmod($dl_path, 0666);
+rename($dl_path, $out_path);
 
-echo $base_url.$path;
+echo $base_url.$url_path;
 
