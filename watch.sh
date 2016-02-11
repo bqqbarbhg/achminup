@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Set direcctory to the current working directory
 cd "${0%/*}"
 
