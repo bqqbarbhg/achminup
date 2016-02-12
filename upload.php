@@ -18,9 +18,9 @@ if ($type == "video") {
 
 } else if ($type == "thumbnail") {
 
-        $dl_path = "temp/thumbnail_downloads/$id.mp4";
-        $out_path = "thumbnails/$id.mp4";
-        $url_path = "thumbnails/$id.mp4";
+        $dl_path = "temp/thumbnail_downloads/$id.jpg";
+        $out_path = "thumbnails/$id.jpg";
+        $url_path = "thumbnails/$id.jpg";
 
 } else {
         die("Unknown type");
