@@ -12,14 +12,14 @@ if (!preg_match($uuid_r, $id)) {
 
 if ($type == "video") {
 
-        $dl_path = "temp/video_downloads/$id.mp4";
-        $out_path = "temp/videos_to_transcode/$id.mp4";
+        $dl_path = "/var/achminup-uploads/temp/video_downloads/$id.mp4";
+        $out_path = "/var/achminup-uploads/temp/videos_to_transcode/$id.mp4";
         $url_path = "videos/$id.mp4";
 
 } else if ($type == "thumbnail") {
 
-        $dl_path = "temp/thumbnail_downloads/$id.jpg";
-        $out_path = "/var/achimup-uploads/thumbnails/$id.jpg";
+        $dl_path = "/var/achminup-uploads/temp/thumbnail_downloads/$id.jpg";
+        $out_path = "/var/achminup-uploads/thumbnails/$id.jpg";
         $url_path = "thumbnails/$id.jpg";
 
 } else {
