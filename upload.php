@@ -19,7 +19,7 @@ if ($type == "video") {
 } else if ($type == "thumbnail") {
 
         $dl_path = "temp/thumbnail_downloads/$id.jpg";
-        $out_path = "thumbnails/$id.jpg";
+        $out_path = "/var/achimup-uploads/thumbnails/$id.jpg";
         $url_path = "thumbnails/$id.jpg";
 
 } else {
