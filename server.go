@@ -20,10 +20,10 @@ import (
 	"time"
 )
 
-var downloadBase = "test/download"
-var srcBase = "test/src"
-var dstBase = "test/dest"
-var serveBase = "test/serve"
+var downloadBase string
+var srcBase string
+var dstBase string
+var serveBase string
 
 var reUUID = regexp.MustCompile("[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}")
 var reRotation = regexp.MustCompile("Rotation\\s*:\\s*(\\d+)")
@@ -341,7 +341,7 @@ func uploadHandler(w http.ResponseWriter, r *http.Request, api *apiData, logger 
 
 	go doProcessing(api.Format, outSrcPath, outDstPath, outServePath, ownerDstPath)
 
-	url := os.Getenv("LAYERS_API_URI") + path.Join("achminup", api.Format, api.ID+api.Extension)
+	url := os.Getenv("LAYERS_API_URI") + path.Join(os.Getenv("ACHMINUP_PATH"), api.Format, api.ID+api.Extension)
 	fmt.Fprintf(w, "%s\n", url)
 
 	return nil, http.StatusOK
@@ -476,6 +476,11 @@ func httpHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
+	downloadBase = os.Getenv("ACHMINUP_DOWNLOAD_PATH")
+	srcBase = path.Join(os.Getenv("ACHMINUP_PROCESS_PATH"), "src")
+	dstBase = path.Join(os.Getenv("ACHMINUP_PROCESS_PATH"), "dst")
+	serveBase = os.Getenv("ACHMINUP_SERVE_PATH")
 
 	paths := []string{
 		downloadBase, srcBase, dstBase, serveBase,
