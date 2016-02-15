@@ -1,5 +1,2 @@
-thumbnails/*
-videos/*
+bin/
 
-!thumbnails/.gitkeep
-!videos/.gitkeep

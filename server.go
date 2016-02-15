@@ -24,6 +24,7 @@ var downloadBase string
 var srcBase string
 var dstBase string
 var serveBase string
+var layersApiUri string
 
 var reUUID = regexp.MustCompile("[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}")
 var reRotation = regexp.MustCompile("Rotation\\s*:\\s*(\\d+)")
@@ -34,7 +35,7 @@ var processID int32
 var serveFileMutex = &sync.Mutex{}
 
 func authenticate(r *http.Request) (identity string, err error) {
-	url := os.Getenv("LAYERS_API_URI") + "/o/oauth2/userinfo"
+	url := layersApiUri + "/o/oauth2/userinfo"
 
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
@@ -341,7 +342,7 @@ func uploadHandler(w http.ResponseWriter, r *http.Request, api *apiData, logger 
 
 	go doProcessing(api.Format, outSrcPath, outDstPath, outServePath, ownerDstPath)
 
-	url := os.Getenv("LAYERS_API_URI") + path.Join(os.Getenv("ACHMINUP_PATH"), api.Format, api.ID+api.Extension)
+	url := layersApiUri + path.Join(os.Getenv("ACHMINUP_PATH"), api.Format, api.ID+api.Extension)
 	fmt.Fprintf(w, "%s\n", url)
 
 	return nil, http.StatusOK
@@ -476,7 +477,7 @@ func httpHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-
+	layersApiUri = strings.TrimSuffix(os.Getenv("LAYERS_API_URI"), "/")
 	downloadBase = os.Getenv("ACHMINUP_DOWNLOAD_PATH")
 	srcBase = path.Join(os.Getenv("ACHMINUP_PROCESS_PATH"), "src")
 	dstBase = path.Join(os.Getenv("ACHMINUP_PROCESS_PATH"), "dst")
